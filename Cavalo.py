@@ -10,7 +10,7 @@ def processar_aposta(saldo, aposta, qual_cavalo, posicao, cavalos_nomes, cavalos
     if qual_cavalo == posicao:
         print("\033[32m\nWIN!\n\033[m")
         time.sleep(0.5)
-        premio = aposta * 3  # Ajustado para o multiplicador fixo
+        premio = aposta * 3
         saldo += premio
 
     print(f"Velocidade dos cavalos: \n")
