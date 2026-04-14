@@ -27,11 +27,13 @@ def confirmar_senha(senha):
         confirmar_senha= str(input("Senha: "))
         if confirmar_senha == senha:
             print("LOGIN CONCEDIDO!")
+            return True
         tentativas -= 1
-        if tentativas == 0:
+        if tentativas > 0:
+            print(f"Senha Incorreta! Você tem {tentativas} tentativas")
+        else:
             print("MÁXIMO DE TENTATIVAS USADAS! TENTE NOVAMENTE EM 2 HORAS...")
             return False
-        print(f"Senha Incorreta! Você tem {tentativas} tentativas")
 email_register = email()
 password_register = senha()
 direcionar = str(input("Continuar para o sistema de login? (Sim ou Não): ").upper().strip())
