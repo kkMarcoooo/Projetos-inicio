@@ -69,8 +69,9 @@ def confi_senha(emailLogin):
         if tentativa > 0:
             tentativa-=1
             print(f"SENHA INCORRETA! Você tem {tentativa} tentativas restantes!")
-        else:
-            print("Aceso bloqueado!")
+    print("Aceso bloqueado!")
+    conexao.close()
+    exit()
 while True:
     print("\n--- SISTEMA DE ACESSO ---")
     print("1. Cadastrar Novo Usuário")
