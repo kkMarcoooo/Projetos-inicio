@@ -75,7 +75,7 @@ def login_senha(email1):
         if resultado_senha:
             nome_login = resultado_senha[0]
             print(f"LOGIN FEITO!\nSeja bem vindo {nome_login}!")
-            return
+            return email1
         else:
             tentativas -= 1
             print(f"Erro! Você ainda tem {tentativas} tentativas!")
@@ -101,22 +101,40 @@ while True:
             continue
         if action == 2:
             email1 = login_email()
-            login_senha(email1)
+            email_login = login_senha(email1)
             break
-def jogo(saldo):
-    while True:
-        print(f"Saldo: R$ {saldo}")
-        aposta = float(input("Valor da aposta: "))
-        if aposta <= saldo:
-            roleta = random.randint(1, 8)
-            saldo -= aposta
-            print(roleta)
-            sorteado = int(input("Digite o número secreto de 1 á 8: "))
-            if sorteado == roleta:
-                print("WIN!")
-                saldo += aposta * 2
-            else:
-                print("You lost!")
-                print(f"O número secreto era {roleta}!")
+print("▶►"*10, "◄◀"*10)
+print(" "*8,"👾🎲Pequeno Tigre🎲👾")
+print("▶►"*10, "◄◀"*10)
+while True:
+    cursor.execute("SELECT saldo FROM dados_users WHERE email = ?", (email_login,))
+    saldo = cursor.fetchone()[0]
+    print("—" * 20)
+    print(f"Saldo: R$ {saldo}")
+    print("—" * 20)
+    aposta = float(input("\nValor da aposta: "))
+    if aposta <= saldo:
+        roleta = random.randint(1, 8)
+        saldo -= aposta
+        sorteado = int(input("\nDigite o número secreto de 1 á 8: "))
+        print("\n")
+        if sorteado == roleta:
+            print("‖ WIN! ‖")
+            saldo += aposta * 2
         else:
-            print("SALDO INSUFICIENTE!")
+            print("‖ You lost! ‖")
+            print(f"\nO número secreto era {roleta}!\n")
+        print("—" * 20)
+        print(f"Saldo: R$ {saldo}")
+        print("—" * 20)
+        cursor.execute("UPDATE dados_users SET saldo = ? WHERE email = ?", (saldo, email_login))
+        conexao.commit()
+        cont = str(input("Continuar [S/N]: ").upper())
+        if cont == "N":
+            print("Saindo do sistema..")
+            time.sleep(1)
+            break
+        else:
+            continue
+    else:
+        print("SALDO INSUFICIENTE!")
