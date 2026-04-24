@@ -16,7 +16,7 @@ cursor.execute("""
 """)
 print("=" * 41)
 print("      GERENCIADOR de GASTOS PESSOAIS")
-print("=" * 41)
+print("="*41)
 def menu():
     while True:
         opcao = int(input("[1] Adicionar Novo Gasto\n[2] Visualizar Relatórios (Gráficos)\n[3] Ver Histórico (Tabela)\n[4] Sair\n\nEscolha uma opção: "))
@@ -52,6 +52,19 @@ def opcoes(menu):
             plt.show()
         else:
             print("Aviso: Adicione gastos primeiro para gerar o relatório!")
+    if menu == 3:
+        print(f"\n{"-=-=Histórico de Gastos=-=-":^40}")
+        cursor.execute("SELECT * FROM gastos_user")
+        linhas = cursor.fetchall()
+        if linhas:
+
+            print(f"{'ID':<4} | {'Data':<12} | {'Categoria':<12} | {'Valor':<10}")
+            for linha in linhas:
+                print(f"{linha[0]:<4} | {linha[1]:<12} | {linha[2]:<12} | R$ {linha[3]:.2f}")
+            print("="*46)
+            print("\n")
+        else:
+            print("Nenhum dado encontrado.")
 while True:
     escolha = menu()
     if escolha == 4:
