@@ -34,6 +34,8 @@ def opcoes(opcao):
         if consulta:
             print("\n")
             print(tabulate.tabulate(consulta, headers=["Título", "Autor", "Ano", "Status"], tablefmt="grid"))
+        else:
+            print("\nSem registros de livros no sistema!")
     if opcao == 3:
         autor_consulta = str(input("Autor do livro á consultar: "))
         funcio.execute("SELECT titulo FROM banco_livros WHERE autor = ?", (autor_consulta, ))
@@ -41,6 +43,8 @@ def opcoes(opcao):
         if consulta:
             for livro in consulta:
                 print(f"- {livro[0]}")
+        else:
+            print("Autor não encontrado no sistema!")
     if opcao == 4:
         nome_livro = str(input("Título do livro: "))
         funcio.execute("SELECT titulo FROM banco_livros WHERE titulo = ?",(nome_livro,))
@@ -51,6 +55,8 @@ def opcoes(opcao):
             if livro_status in (0,1):
                 funcio.execute("UPDATE banco_livros SET lido = ? WHERE titulo = ?", (livro_status, nome_livro))
                 banco.commit()
+        else:
+            print("Livro não encontrado!")
     if opcao == 5:
         livro_remover = str(input("Título do livro á remover: "))
         funcio.execute("SELECT titulo FROM banco_livros WHERE titulo = ?", (livro_remover,))
