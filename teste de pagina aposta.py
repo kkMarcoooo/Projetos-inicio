@@ -10,7 +10,7 @@ n1 = None
 def apostar():
     blank = []
     global cont
-    global saldo
+    global saldo, avisos
     cont = 0
     if botao_option != 0:
         if saldo > 0:
@@ -45,29 +45,49 @@ def apostar():
             if blank[0] == blank[1] == blank[2]:
                 saldo = saldo + aposta * 4
             saldo_texto.config(text=f"Saldo: R$ {saldo:.2f}")
+
 def opcao1():
     global botao_option
     botao_option = 2
+    avisos.config(text="Selecionado: R$ 2,00")
+    avisos.config(font=("Arial", 15))
 def opcao2():
     global botao_option
+    avisos.config(text="Selecionado: R$ 4,00")
     botao_option = 4
+    avisos.config(font=("Arial", 15))
 def opcao3():
     global botao_option
     botao_option = 8
+    avisos.config(text="Selecionado: R$ 8,00")
+    avisos.config(font=("Arial", 15))
 def opcao4():
     global botao_option
     botao_option = 16
+    avisos.config(text="Selecionado: R$ 16,00")
+    avisos.config(font=("Arial", 15))
+
+tk.Frame(janela,bd=4, bg="#ffeca1", highlightbackground= '#D6A765', highlightthickness=3).place(relx=0.9, rely=0.4, relwidth=0.15, relheight=0.5, anchor="center")
 
 opcao_1 =tk.Button(janela, text="R$ 2,00", command=opcao1)
+opcao_1.config(font=("Arial", 12))
+
 opcao_2 = tk.Button(janela, text="R$ 4,00", command=opcao2)
+opcao_2.config(font=("Arial", 12))
+
 opcao_3 = tk.Button(janela, text="R$ 8,00", command=opcao3)
+opcao_3.config(font=("Arial", 12))
+
 opcao_4 = tk.Button(janela, text="R$ 16,00", command=opcao4)
-opcao_1.place(relx=0.9, rely= 0.35, anchor="center")
-opcao_2.place(relx=0.9, rely= 0.40, anchor="center")
-opcao_3.place(relx=0.9, rely= 0.45, anchor="center")
-opcao_4.place(relx=0.9, rely= 0.50, anchor="center")
+opcao_4.config(font=("Arial", 12))
+
+opcao_1.place(relx=0.9, rely= 0.25, relwidth=0.1, relheight=0.07, anchor="center")
+opcao_2.place(relx=0.9, rely= 0.35, relwidth=0.1, relheight=0.07, anchor="center")
+opcao_3.place(relx=0.9, rely= 0.45, relwidth=0.1, relheight=0.07, anchor="center")
+opcao_4.place(relx=0.9, rely= 0.55, relwidth=0.1, relheight=0.07, anchor="center")
 
 tk.Frame(janela,bd=4, bg="#ffeca1", highlightbackground= '#D6A765', highlightthickness=3).place(relx=0.30, rely=0.35, relwidth=0.4, relheight=0.1)
+
 texto1 = tk.Label(janela, text="⬛", bg="#ffeca1")
 texto1.config(font=("Arial",20))
 texto1.place(relx=0.35, rely= 0.4,   anchor="center")
@@ -82,7 +102,7 @@ texto3.place(relx=0.65, rely= 0.4, anchor="center")
 
 avisos = tk.Label(janela, text="Selecione Valor Para Aposta!")
 avisos.place(relx=0.5,rely=0.2, anchor="center")
-avisos.config(font=("Arial", 12))
+avisos.config(font=("Arial", 15))
 
 tk.Button(janela, text="Apostar", command=apostar).place(relx=0.5, rely= 0.6, anchor="center")
 
