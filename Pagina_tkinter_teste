@@ -1,0 +1,23 @@
+import tkinter as tk
+
+janela = tk.Tk()
+def pagina(f1, f2):
+    f1.place_forget()
+    f2.place(relwidth = 1, relheight = 1)
+
+f1 = tk.Frame(janela, bg="#b6d6de")
+f1.place(relwidth = 1, relheight = 1)
+tk.Label(f1, text="Pg. 1").place(relx=0.9, rely=0.9, anchor="center")
+tk.Label(f1, text="Essa é a página 1").place(relx=0.5, rely=0.5, anchor="center")
+tk.Button(f1, text="->", command= lambda: pagina(f1,f2)).place(relx=0.87, rely=0.9, anchor="center")
+
+f2 = tk.Frame(janela, bg="#b6d6de")
+
+tk.Label(f2, text="Pg. 2").place(relx=0.9, rely=0.9, anchor="center")
+tk.Label(f2, text="Essa é a página 2").place(relx=0.5, rely=0.5, anchor="center")
+tk.Button(f2, text="<-", command= lambda: pagina(f2,f1)).place(relx=0.87, rely=0.9, anchor="center")
+
+janela.minsize(height=700, width=900)
+janela.config(background="#b6d6de")
+
+janela.mainloop()
