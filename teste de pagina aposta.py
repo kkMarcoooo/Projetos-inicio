@@ -104,8 +104,7 @@ avisos = tk.Label(janela, text="Selecione Valor Para Aposta!", fg="#fac355", bg=
 avisos.place(relx=0.5,rely=0.2, anchor="center")
 avisos.config(font=("Arial", 15))
 
-tk.Button(janela, text="Apostar", command=apostar).place(relx=0.5, rely= 0.6, anchor="center")
-
+tk.Button(janela, text="Apostar", command=apostar, fg="white",bg="#ff2b2b", activeforeground="yellow", activebackground="#c22121").place(relx=0.5, rely= 0.6,relwidth=0.08, relheight=0.08, anchor="center")
 saldo_texto = tk.Label(janela, text=f"Saldo: R$ {saldo:.2f}")
 saldo_texto.place(relx=0.05, rely=0.01)
 saldo_texto.config(font=("Times New Roman", 12))
