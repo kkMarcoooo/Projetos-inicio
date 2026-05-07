@@ -1,5 +1,7 @@
 import random
 import tkinter as tk
+from pydoc import text
+
 botao_option = 0
 janela = tk.Tk()
 cont = 0
@@ -14,6 +16,7 @@ def apostar():
     cont = 0
     if botao_option != 0:
         if saldo > 0:
+            status.config(text="Perdeu!", bg="#fff3c2")
             aposta = botao_option
             saldo -= aposta
             for i in range(3):
@@ -44,6 +47,7 @@ def apostar():
                         texto3.config(text="💖", bg="#ffeca1")
             if blank[0] == blank[1] == blank[2]:
                 saldo = saldo + aposta * 4
+                status.config(text=f"JACKPOT!!!\n+ R$ {aposta*4:.2f}", bg="#64c94b")
             saldo_texto.config(text=f"Saldo: R$ {saldo:.2f}")
 
 def opcao1():
@@ -68,6 +72,12 @@ def opcao4():
     avisos.config(font=("Arial", 15))
 
 tk.Frame(janela,bd=4, bg="#c41b1b", highlightbackground= '#fac355', highlightthickness=3).place(relx=0.9, rely=0.4, relwidth=0.15, relheight=0.5, anchor="center")
+
+frame_titulo = tk.Frame(janela, bd=4, bg="black", highlightbackground= 'gold', highlightthickness=3).place(relx=0.5, rely=0.02, relwidth=1, relheight=0.15, anchor="center")
+
+titulo = tk.Label(janela,text="~ Pequeno Tigre 🐯🎲 ~", bg="black", fg="#fac355")
+titulo.place(relx=0.5, rely=0.05, anchor="center")
+titulo.config(font=("Comic Sans MS", 25))
 
 opcao_1 =tk.Button(janela, text="R$ 2,00", command=opcao1, fg="white",bg="#a3a0a0", activeforeground="yellow", activebackground="#525252")
 opcao_1.config(font=("Arial", 12))
@@ -104,9 +114,13 @@ avisos = tk.Label(janela, text="Selecione Valor Para Aposta!", fg="#fac355", bg=
 avisos.place(relx=0.5,rely=0.2, anchor="center")
 avisos.config(font=("Arial", 15))
 
+status = tk.Label(janela, text="-  -  -  -  -  -")
+status.place(relx=0.5,rely=0.5, anchor="center")
+status.config(font=("Arial", 14))
+
 tk.Button(janela, text="Apostar", command=apostar, fg="white",bg="#ff2b2b", activeforeground="yellow", activebackground="#c22121").place(relx=0.5, rely= 0.6,relwidth=0.08, relheight=0.08, anchor="center")
 saldo_texto = tk.Label(janela, text=f"Saldo: R$ {saldo:.2f}")
-saldo_texto.place(relx=0.05, rely=0.01)
+saldo_texto.place(relx=0.04, rely=0.12)
 saldo_texto.config(font=("Times New Roman", 12))
 
 janela.config(background="#262626")
