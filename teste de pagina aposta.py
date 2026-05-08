@@ -73,7 +73,9 @@ def opcao4():
 
 tk.Frame(janela,bd=4, bg="#c41b1b", highlightbackground= '#fac355', highlightthickness=3).place(relx=0.9, rely=0.4, relwidth=0.15, relheight=0.5, anchor="center")
 
-frame_titulo = tk.Frame(janela, bd=4, bg="black", highlightbackground= 'gold', highlightthickness=3).place(relx=0.5, rely=0.02, relwidth=1, relheight=0.15, anchor="center")
+frame_titulo = tk.Frame(janela, bd=4, bg="black", highlightbackground= 'gold', highlightthickness=3).place(relx=0.5, rely=0.02, relwidth=1.1, relheight=0.15, anchor="center")
+frame_rodape = tk.Frame(janela, bd=4, bg="black", highlightbackground= 'gold', highlightthickness=3).place(relx=0.5, rely=1, relwidth=1.1, relheight=0.15, anchor="center")
+
 
 titulo = tk.Label(janela,text="~ Pequeno Tigre 🐯🎲 ~", bg="black", fg="#fac355")
 titulo.place(relx=0.5, rely=0.05, anchor="center")
@@ -117,6 +119,10 @@ avisos.config(font=("Arial", 15))
 status = tk.Label(janela, text="-  -  -  -  -  -")
 status.place(relx=0.5,rely=0.5, anchor="center")
 status.config(font=("Arial", 14))
+
+sobre = tk.Label(janela, text="1° Cassino Honesto 100% Honesto\nSELO DE HONESTIDADE DA O.N.U: ✅✅✅", fg="white", bg="black")
+sobre.place(relx=0.5,rely=0.965, anchor="center")
+sobre.config(font=("Courier New", 7))
 
 tk.Button(janela, text="Apostar", command=apostar, fg="white",bg="#ff2b2b", activeforeground="yellow", activebackground="#c22121").place(relx=0.5, rely= 0.6,relwidth=0.08, relheight=0.08, anchor="center")
 saldo_texto = tk.Label(janela, text=f"Saldo: R$ {saldo:.2f}")
