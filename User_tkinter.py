@@ -5,7 +5,6 @@ janela = tk.Tk()
 janela.minsize(width=900, height=700)
 janela.title("Cadastro Usuário ~")
 janela.config(bg="#1f1d19")
-
 def pegar_all_dados():
     global aviso
     try:
@@ -22,11 +21,12 @@ def pegar_all_dados():
         msg = "INSIRA EMAIL VÁLIDO!"
     elif s != cs:
         msg = "SENHAS NÂO COINCIDEM"
+    if msg!="":
+        aviso = tk.Label(janela, text=msg, fg="red", bg="lightblue", font=("Arial", 12, "bold"))
     else:
+        aviso = tk.Label(janela, text= "LOGIN FEITO COM SUCESSO!", fg = "green", bg = "lightblue", font=("Arial", 12, "bold"))
         print(f"Sucesso: {u}, {e}, {s}")
-    aviso = tk.Label(janela, text= msg, fg = "red", bg = "lightblue")
     aviso.place(relx=0.3, rely=0.7, anchor="center")
-    aviso.config(font=("Arial", 12, "bold"))
 
 # Frame =======================
 frame_1 = tk.Frame(janela, bd= 4, bg="lightblue", highlightbackground="darkblue", highlightthickness=2)
